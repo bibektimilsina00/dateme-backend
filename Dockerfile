@@ -4,7 +4,7 @@ WORKDIR /app
 ENV PYTHONPATH=/app
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# First copy only requirements.txt to cache dependencies independently
+
 COPY requirements.txt /app
 RUN pip install --no-cache-dir -r requirements.txt
 

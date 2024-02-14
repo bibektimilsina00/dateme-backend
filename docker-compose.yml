@@ -1,10 +1,10 @@
 version: '3.8'
 
 services:
-  fastapi-app:
-    container_name: fastapi-app
+  dateme-backend:
+    container_name: dateme-backend
     build: .
-    image: fast_api_base
+    image: dateme-backend
 
     ports:
       - "4000:80"
@@ -27,15 +27,6 @@ services:
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    env_file:
-      - .env
-    depends_on:
-      - db
-    ports:
-      - 5050:80
 
 volumes:
   postgres_data:
