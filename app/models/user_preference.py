@@ -11,4 +11,4 @@ class UserPreference(Base):
     location_radius = Column(Integer)
     looking_for = Column(Text)
     
-    user = relationship("User", back_populates="preferences")
+    user = relationship("User", backref="preferences")

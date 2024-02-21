@@ -12,6 +12,6 @@ class Message(Base):
     sent_at = Column(DateTime(timezone=True), server_default=func.now())
 
     user_id = Column(Integer, ForeignKey('user.id'))
-    sender = relationship("User", back_populates="sent_messages")
+    sender = relationship("User", backref="sent_messages")
     # Relationship to Chat
-    chat = relationship("Chat", back_populates="messages")
+    chat = relationship("Chat", backref="messages")

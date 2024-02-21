@@ -28,10 +28,3 @@ class User(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     country = relationship("Country", back_populates="users")
-    images = relationship("UserImage", back_populates="user")
-    interests = relationship("UserInterest", back_populates="user")
-    preferences = relationship("UserPreference", back_populates="user")
-    sent_messages = relationship("Message", back_populates="sender")
-    notifications = relationship("Notification", back_populates="user")
-    locations = relationship("UserLocation", back_populates="user")
-    activity_logs = relationship("ActivityLog", back_populates="user")

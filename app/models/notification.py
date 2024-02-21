@@ -21,4 +21,4 @@ class Notification(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())  # Timestamp for when the notification was created
     
     # Relationship to User
-    user = relationship("User", back_populates="notifications")
+    user = relationship("User", backref="notifications")

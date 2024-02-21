@@ -14,5 +14,5 @@ class UserLocation(Base):
     longitude = Column(DECIMAL(9, 6))
     timestamp = Column(DateTime, default=func.now(), nullable=False)
     
-    user = relationship("User", back_populates="locations")
+    user = relationship("User", backref="locations")
 

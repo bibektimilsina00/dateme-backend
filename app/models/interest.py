@@ -8,4 +8,3 @@ class Interest(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     interest_name = Column(String)
     
-    user_interests = relationship("UserInterest", back_populates="interest")

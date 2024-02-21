@@ -9,5 +9,5 @@ class UserInterest(Base):
     user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
     interest_id = Column(Integer, ForeignKey('interest.id'), primary_key=True)
     
-    user = relationship("User", back_populates="interests")
-    interest = relationship("Interest", back_populates="user_interests")
+    user = relationship("User", backref="interests")
+    interest = relationship("Interest", backref="user_interests")

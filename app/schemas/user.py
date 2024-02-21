@@ -9,12 +9,20 @@ class UserBase(BaseModel):
     is_active: Optional[bool] = True
     is_superuser: bool = False
     full_name: Optional[str] = None
+    auth_provider: Optional[str] = None
+    country_id: Optional[int] = None
+    phone_number: Optional[str] = None
+    gender: Optional[str] = None
+    date_of_birth: Optional[str] = None
+    location: Optional[str] = None
+    profile_status: Optional[str] = None
+
 
 
 # Properties to receive via API on creation
 class UserCreate(UserBase):
-    email: EmailStr
     password: str
+
 
 
 # Properties to receive via API on update
@@ -24,6 +32,8 @@ class UserUpdate(UserBase):
 
 class UserInDBBase(UserBase):
     id: Optional[int] = None
+    creaded_at: Optional[str] = None
+    updated_at: Optional[str] = None
     model_config = ConfigDict(from_attributes=True)
 
 

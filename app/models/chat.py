@@ -16,7 +16,3 @@ class Chat(Base):
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     # Relationship to Message
-    messages = relationship("Message", back_populates="chat")
-
-    # If you want to track participants of the chat, you might need a many-to-many relationship
-    # participants = relationship("User", secondary="chat_participants")

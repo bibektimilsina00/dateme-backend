@@ -17,4 +17,4 @@ class ActivityLog(Base):
     created_at = Column(DateTime, default=func.now(), nullable=False)
 
     # Relationship to User
-    user = relationship("User", back_populates="activity_logs")
+    user = relationship("User", backref="activity_logs")

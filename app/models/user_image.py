@@ -11,4 +11,4 @@ class UserImage(Base):
     image_url = Column(String)
     uploaded_at = Column(DateTime, default=datetime.utcnow)
     
-    user = relationship("User", back_populates="images")
+    user = relationship("User", backref="images")

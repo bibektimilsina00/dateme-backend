@@ -3,7 +3,7 @@ from typing import Any, List, Optional, Union
 
 from dotenv import load_dotenv
 from pydantic import (AnyHttpUrl, AnyUrl, EmailStr, HttpUrl, PostgresDsn,
-                      ValidationInfo, field_validator)
+                    ValidationInfo, field_validator)
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import os
 
