@@ -5,7 +5,8 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from app import crud, models
+from app.crud.user.crud_user import user as crud_user
+from app.models.user import User
 from app.schemas import token as schemas
 from app.schemas import user as user_schemas
 from app.schemas import msg as msg_schemas
@@ -29,12 +30,12 @@ def login_access_token(
     """
     OAuth2 compatible token login, get an access token for future requests
     """
-    user = crud.user.authenticate(
+    user = crud_user.authenticate(
         db, email=form_data.username, password=form_data.password
     )
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect email or password")
-    elif not crud.user.is_active(user):
+    elif not crud_user.is_active(user):
         raise HTTPException(status_code=400, detail="Inactive user")
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     return {
@@ -46,7 +47,7 @@ def login_access_token(
 
 
 @router.post("/login/test-token", response_model=user_schemas.User)
-def test_token(current_user: models.User = Depends(deps.get_current_user)) -> Any:
+def test_token(current_user: User = Depends(deps.get_current_user)) -> Any:
     """
     Test access token
     """
@@ -58,7 +59,7 @@ def recover_password(email: str, db: Session = Depends(deps.get_db)) -> Any:
     """
     Password Recovery
     """
-    user = crud.user.get_by_email(db, email=email)
+    user = crud_user.get_by_email(db, email=email)
 
     if not user:
         raise HTTPException(
@@ -84,13 +85,13 @@ def reset_password(
     email = verify_password_reset_token(token)
     if not email:
         raise HTTPException(status_code=400, detail="Invalid token")
-    user = crud.user.get_by_email(db, email=email)
+    user = crud_user.get_by_email(db, email=email)
     if not user:
         raise HTTPException(
             status_code=404,
             detail="The user with this username does not exist in the system.",
         )
-    elif not crud.user.is_active(user):
+    elif not crud_user.is_active(user):
         raise HTTPException(status_code=400, detail="Inactive user")
     hashed_password = get_password_hash(new_password)
     user.hashed_password = hashed_password
