@@ -5,8 +5,6 @@ from app.models.item import Item
 from app.models.user import User   
 from app.models.country import Country
 from app.models.user_preference import UserPreference
-from app.models.user_interest import UserInterest
-from app.models.user_image import UserImage
 from app.models.interest import Interest
 
 
@@ -19,3 +17,4 @@ from app.models.user_report import UserReport
 from app.models.user_location import UserLocation
 from app.models.activity_log import ActivityLog 
 from app.models.user_block import UserBlock
+

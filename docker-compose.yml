@@ -11,11 +11,11 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      - dateme-db
     command: /bin/bash -c "/app/pre-start.sh && uvicorn app.main:app --host 0.0.0.0 --port 80 --reload"
 
-  db:
-    container_name: postgresql_db
+  dateme-db:
+    container_name: dateme-db
     image: postgres:16
 
     ports:

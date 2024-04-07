@@ -5,8 +5,9 @@ from pydantic import ConfigDict, BaseModel
 
 # Shared properties
 class CountryBase(BaseModel):
-    name: Optional[str] = None
-    code: Optional[str] = None
+    country_name: Optional[str] = None
+    country_code: Optional[str] = None
+    image_url: Optional[str] = None
 
 
 # Properties to receive on country creation

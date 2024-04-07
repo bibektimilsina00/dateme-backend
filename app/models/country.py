@@ -13,5 +13,4 @@ class Country(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     country_name = Column(String)
     country_code = Column(String)
-    
-    users = relationship("User", back_populates="country")
+    image_url= Column(String)

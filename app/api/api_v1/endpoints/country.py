@@ -18,22 +18,11 @@ def read_items(
     """
     Retrieve items.
     """
-   
-    country =crud_country.country.get_multi (db, skip=skip, limit=limit)
+    country =crud_country.country.get_multi(db, skip=skip, limit=limit)
+    
     return country
 
 
- 
-
-
- 
-
- 
-
- 
-
-
- 
 
 
 

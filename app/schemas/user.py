@@ -1,7 +1,7 @@
-from typing import Optional
+from datetime import datetime
+from typing import Optional,List
 
 from pydantic import ConfigDict, BaseModel, EmailStr
-
 
 # Shared properties
 class UserBase(BaseModel):
@@ -16,13 +16,35 @@ class UserBase(BaseModel):
     date_of_birth: Optional[str] = None
     location: Optional[str] = None
     profile_status: Optional[str] = None
+    bio: Optional[str] = None
+    profession: Optional[str] = None 
+    profile_pic_url: Optional[str] = None
+    address : Optional[str] = None
+    profile_image_urls :Optional[List[str]] = None 
+    
+    
+    
+    
 
 
 
 # Properties to receive via API on creation
 class UserCreate(UserBase):
+    email: EmailStr
     password: str
-
+    full_name: str
+    country_id: int
+    phone_number:str
+    gender:str
+    date_of_birth:str
+    profile_status:str='Active'
+    bio:str
+    profession:str
+    profile_pic_url:str
+    address:str
+    profile_image_urls:List[str]
+    
+    
 
 
 # Properties to receive via API on update
@@ -32,8 +54,8 @@ class UserUpdate(UserBase):
 
 class UserInDBBase(UserBase):
     id: Optional[int] = None
-    creaded_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    creaded_at: Optional[ datetime] = None
+    updated_at: Optional[datetime] = None
     model_config = ConfigDict(from_attributes=True)
 
 

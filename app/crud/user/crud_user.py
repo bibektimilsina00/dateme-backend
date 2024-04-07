@@ -18,7 +18,19 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             hashed_password=get_password_hash(obj_in.password),
             full_name=obj_in.full_name,
             is_superuser=obj_in.is_superuser,
-        )
+            is_active=obj_in.is_active,
+            profession=obj_in.profession,
+            profile_pic_url=obj_in.profile_pic_url,
+            address=obj_in.address,
+            profile_image_urls=obj_in.profile_image_urls,
+            phone_number=obj_in.phone_number,
+            profile_status=obj_in.profile_status,
+            bio=obj_in.bio,
+            location=obj_in.location,
+            date_of_birth=obj_in.date_of_birth,
+            gender=obj_in.gender,
+            country_id=obj_in.country_id
+)
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)

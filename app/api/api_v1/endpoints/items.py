@@ -3,9 +3,9 @@ from typing import Any, List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app import   models
+from app import  models
 from app.crud.user import crud_user 
-from app.crud import crud_item
+from app.crud.crud_item import item as crud_item
 from app.schemas import item
 from app.api import deps
 
@@ -23,9 +23,9 @@ def read_items(
     Retrieve items.
     """
     if crud_user.user.is_superuser(current_user):
-        items = crud_item.item.item.get_multi(db, skip=skip, limit=limit)
+        items = crud_item.get_multi(db, skip=skip, limit=limit)
     else:
-        items = crud_item.item.get_multi_by_owner(
+        items = crud_item.get_multi_by_owner(
             db=db, owner_id=current_user.id, skip=skip, limit=limit
         )
     return items
@@ -41,7 +41,7 @@ def create_item(
     """
     Create new item.
     """
-    item = crud_item.item.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
+    item = crud_item.create_with_owner(db=db, obj_in=item_in, owner_id=current_user.id)
     return item
 
 
@@ -56,12 +56,12 @@ def update_item(
     """
     Update an item.
     """
-    item = crud_item.item.get(db=db, id=id)
+    item = crud_item.get(db=db, id=id)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud_user.user.is_superuser(current_user) and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    item = crud_item.item.update(db=db, db_obj=item, obj_in=item_in)
+    item = crud_item.update(db=db, db_obj=item, obj_in=item_in)
     return item
 
 
@@ -75,7 +75,7 @@ def read_item(
     """
     Get item by ID.
     """
-    item = crud_item.item.get(db=db, id=id)
+    item = crud_item.get(db=db, id=id)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud_user.user.is_superuser(current_user) and (item.owner_id != current_user.id):
@@ -93,10 +93,10 @@ def delete_item(
     """
     Delete an item.
     """
-    item = crud_item.item.get(db=db, id=id)
+    item = crud_item.get(db=db, id=id)
     if not item:
         raise HTTPException(status_code=404, detail="Item not found")
     if not crud_user.user.is_superuser(current_user) and (item.owner_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    item = crud_item.item.remove(db=db, id=id)
+    item = crud_item.remove(db=db, id=id)
     return item
