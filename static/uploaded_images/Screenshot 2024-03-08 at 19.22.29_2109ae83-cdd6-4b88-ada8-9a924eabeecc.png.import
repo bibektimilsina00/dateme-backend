@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bkb8fa73trq1e"
+path="res://.godot/imported/Screenshot 2024-03-08 at 19.22.29_2109ae83-cdd6-4b88-ada8-9a924eabeecc.png-9ad0196a20ac1985a314206e22125195.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://fastapi/dateme-backend/static/uploaded_images/Screenshot 2024-03-08 at 19.22.29_2109ae83-cdd6-4b88-ada8-9a924eabeecc.png"
+dest_files=["res://.godot/imported/Screenshot 2024-03-08 at 19.22.29_2109ae83-cdd6-4b88-ada8-9a924eabeecc.png-9ad0196a20ac1985a314206e22125195.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

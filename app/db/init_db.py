@@ -23,5 +23,15 @@ def init_db(db: Session) -> None:
             email=settings.FIRST_SUPERUSER,
             password=settings.FIRST_SUPERUSER_PASSWORD,
             is_superuser=True,
+            full_name="Superuser",
+            country_id=1,
+            phone_number='123456789',
+            gender="Male",
+            date_of_birth="1990-01-01",
+            bio="I am a superuser",
+            profession="Software Engineer",
+            profile_pic_url="https://example.com/profile_pic",
+            address="123, Main Street",
+            profile_image_urls=["https://example.com/image1", "https://example.com/image2"]
         )
         user = crud_user.user.create(db, obj_in=user_in)  # noqa: F841

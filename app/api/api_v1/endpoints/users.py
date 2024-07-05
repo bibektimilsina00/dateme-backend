@@ -43,6 +43,7 @@ def get_recomended_users(
     """
     # users = crud_user.get_recomended_users(db, current_user)
     users = crud_user.get_multi(db, skip=skip, limit=limit)
+    print(users)
     return users
 
 

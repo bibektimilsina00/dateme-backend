@@ -4,8 +4,7 @@ from sqlalchemy.orm import relationship
 
 from app.db.base_class import Base
 
-if TYPE_CHECKING:
-    from .item import Item  # noqa: F401
+
 
 
 class User(Base):
@@ -23,10 +22,13 @@ class User(Base):
     location = Column(String)
     profile_status = Column(String, default='Active')
     bio = Column(String)
-    created_at = Column(DateTime, default=func.now())
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
     phone_number = Column(String)
     profession = Column(String)
     profile_pic_url = Column(String)
     address = Column(String)
     profile_image_urls = Column(JSON)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    current_location=Column(Integer,ForeignKey('userlocation.id'),nullable=True)
+    user_location=relationship('UserLocation',backref='users')
+
